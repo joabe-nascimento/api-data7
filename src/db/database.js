@@ -1,12 +1,10 @@
+require("dotenv").config(); // Adicione isto no início do seu arquivo
+
 const mongoose = require("mongoose");
 
-const uri =
-  "mongodb+srv://data7:QJmQbYVzyx5Len3d@data7.abhtonp.mongodb.net/?retryWrites=true&w=majority&appName=data7"; // Substitua pelo seu URI de conexão
+const uri = process.env.MONGO_URI; // Use a variável de ambiente
 
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(uri); // Remova as opções deprecated
 
 const db = mongoose.connection;
 
