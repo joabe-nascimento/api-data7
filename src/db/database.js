@@ -1,10 +1,10 @@
-require("dotenv").config(); // Adicione isto no início do seu arquivo
+require("dotenv").config(); 
 
 const mongoose = require("mongoose");
 
-const uri = process.env.MONGO_URI; // Use a variável de ambiente
+const uri = process.env.MONGO_URI; 
 
-mongoose.connect(uri); // Remova as opções deprecated
+mongoose.connect(uri);
 
 const db = mongoose.connection;
 

@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const feedbackRoutes = require("./routes/feedbackRoutes");
-const db = require("./db/database"); // Importa a configuração do banco de dados
+const db = require("./db/database"); 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
