@@ -1,25 +1,16 @@
-require("dotenv").config();
+require("dotenv").config(); // Adicione isto no início do seu arquivo
+
 const mongoose = require("mongoose");
 
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URI; // Use a variável de ambiente
 
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(uri); // Remova as opções deprecated
 
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "Erro na conexão com o MongoDB:"));
 db.once("open", () => {
   console.log("Conectado ao MongoDB com sucesso!");
-});
-
-// Graceful shutdown
-process.on("SIGINT", async () => {
-  await mongoose.connection.close();
-  console.log("MongoDB connection closed due to app termination");
-  process.exit(0);
 });
 
 module.exports = db;

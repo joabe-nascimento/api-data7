@@ -2,24 +2,30 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const feedbackRoutes = require("./routes/feedbackRoutes");
+const db = require("./db/database"); // Configuração do banco de dados
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Configure CORS
-app.use(
-  cors({
-    origin: "https://data7-coral.vercel.app", // Replace with your actual frontend URL
-  })
-);
+// Configuração CORS
+const corsOptions = {
+  origin: ["http://localhost:3000", "https://data7-coral.vercel.app"], // Adicione aqui suas origens permitidas
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-// Middleware
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-// Routes
+// Roteamento
 app.use("/api/feedback", feedbackRoutes);
 
-// Start server
+// Tratamento de erros
+app.use((err, req, res, next) => {
+  console.error("Erro no servidor:", err);
+  res.status(500).send("Erro interno do servidor");
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
