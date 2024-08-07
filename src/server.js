@@ -6,7 +6,7 @@ const feedbackRoutes = require("./routes/feedbackRoutes");
 const db = require("./db/database"); // Importa o módulo de conexão com o MongoDB
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 // Configura o CORS para permitir todas as origens
 app.use(cors());
