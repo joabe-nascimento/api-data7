@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Feedback = require("../modes/feedback");
+const Feedback = require("../models/feedback"); // Corrija o caminho se necessário
 
 // Endpoint para receber feedback
 router.post("/", async (req, res) => {
